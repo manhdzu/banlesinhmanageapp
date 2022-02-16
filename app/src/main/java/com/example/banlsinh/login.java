@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.banlsinh.custom.CustomToast;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class login extends AppCompatActivity {
@@ -45,7 +46,7 @@ public class login extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
             if(username.isEmpty() || password.isEmpty())
-                Toast.makeText(getApplicationContext(), "Yêu cầu TÊN ĐĂNG NHẬP và MẬT KHẨU", Toast.LENGTH_SHORT).show();
+                CustomToast.makeText(getApplicationContext(), "Yêu cầu tên đăng nhập và mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.WARNING, true).show();
             else {
                 progressBar.setVisibility(View.VISIBLE);
                 Handler handler = new Handler();
@@ -64,13 +65,14 @@ public class login extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 String result = putData.getResult();
                                 if (result.equals("Dang nhap thanh cong")) {
-                                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(), "Đăng nhập thành công", CustomToast.LENGTH_SHORT, CustomToast.SUCCESS, true).show();
                                     startActivity(i);
                                     finish();
                                 } else if(result.equals("Ten dang nhap hoac mat khau sai"))
-                                    Toast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu sai", Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu sai", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
                                 else if(result.equals("Loi ket noi"))
-                                    Toast.makeText(getApplicationContext(), "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(), "Lỗi kết nối", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
+
                             }
                         }
                     }

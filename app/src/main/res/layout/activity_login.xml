@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login">
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,18 +73,17 @@
                     android:background="@drawable/buttonbackground"
                     android:textColor="@color/white"
                     android:layout_marginHorizontal="50dp"/>
-
             </RelativeLayout>
         </ScrollView>
         <ProgressBar
             android:id="@+id/progress"
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="10dp"
             android:indeterminateTint="@color/main"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:indeterminate="true"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
