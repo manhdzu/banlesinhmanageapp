@@ -10,4 +10,5 @@
     <color name="text_color">#333333</color>
     <color name="hint">#AEAEAE</color>
     <color name="bg_color">#EDEDED</color>
+    <color name="main">#B32020</color>
 </resources>

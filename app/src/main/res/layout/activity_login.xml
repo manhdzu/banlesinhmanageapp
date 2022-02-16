@@ -1,76 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login"
-    >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints"
-        android:fillViewport="true">
-        <RelativeLayout
+    tools:context=".login">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".login"
-            android:background="@color/bg_color"
-            android:gravity="center"
-            android:paddingVertical="20dp"
-            tools:ignore="ScrollViewSize">
-            <ImageView
-                android:id="@+id/logobls"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:src="@drawable/logo"
-                android:contentDescription="@string/app_name" />
-            <EditText
-                android:id="@+id/username"
+            tools:ignore="MissingConstraints"
+            android:fillViewport="true">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@+id/logobls"
-                android:layout_marginHorizontal="60dp"
-                android:layout_marginTop="40dp"
-                android:autofillHints=""
-                android:background="@drawable/edittextbackground"
-                android:backgroundTint="@color/white"
-                android:hint="@string/hint_username"
-                android:inputType="text"
-                android:paddingHorizontal="18dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/hint"
-                android:textSize="18sp"
-                tools:ignore="TouchTargetSizeCheck" />
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@+id/username"
-                android:layout_marginHorizontal="60dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/edittextbackground"
-                android:backgroundTint="@color/white"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
-                android:paddingHorizontal="18dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/hint"
-                android:textSize="18sp"
-                tools:ignore="TouchTargetSizeCheck"
-                android:importantForAutofill="no" />
-            <Button
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@id/password"
-                android:text="@string/btn_login"
-                android:textSize="12sp"
-                android:layout_marginTop="30dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/buttonbackground"
-                android:textColor="@color/white"
-                android:layout_marginHorizontal="60dp"/>
-        </RelativeLayout>
-    </ScrollView>
+                android:layout_height="match_parent"
+                tools:context=".login"
+                android:background="@color/bg_color"
+                android:gravity="center"
+                tools:ignore="ScrollViewSize">
+
+                <ImageView
+                    android:id="@+id/logobls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/logo" />
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/logobls"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="40dp"
+                    android:autofillHints=""
+                    android:background="@drawable/edittextbackground"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/hint_username"
+                    android:inputType="text"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/username"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edittextbackground"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp"
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:importantForAutofill="no" />
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@id/password"
+                    android:text="@string/btn_login"
+                    android:textSize="12sp"
+                    android:layout_marginTop="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/buttonbackground"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="50dp"/>
+
+            </RelativeLayout>
+        </ScrollView>
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="10dp"
+            android:indeterminateTint="@color/main"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
