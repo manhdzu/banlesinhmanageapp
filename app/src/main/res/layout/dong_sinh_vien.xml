@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textview_tenthanh"
+        android:text="Tên Thánh "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#0d00ff"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/textview_hoten"
+        android:text="Họ và Tên"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#0d00ff"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/textview_tenthanh"/>
+    <TextView
+        android:id="@+id/textview_ngaysinh"
+        android:text="Ngày sinh: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#616161"
+        android:textSize="15sp"
+        android:layout_below="@id/textview_hoten"/>
+
+    <TextView
+        android:id="@+id/textview_ngaysinh_re"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_tenthanh"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textview_ngaysinh"
+        android:text="ngaysinh"
+        android:textColor="#303030"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textview_lienlac"
+        android:text="Liên lạc: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#616161"
+        android:textSize="15sp"
+        android:layout_below="@id/textview_ngaysinh"/>
+
+    <TextView
+        android:id="@+id/textview_lienlac_re"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_ngaysinh"
+        android:layout_toRightOf="@+id/textview_ngaysinh"
+        android:text="lienlac"
+        android:textColor="#303030"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"/>
+    <TextView
+        android:id="@+id/textview_diachi"
+        android:text="Địa chỉ: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#616161"
+        android:textSize="15sp"
+        android:layout_below="@id/textview_lienlac"/>
+
+    <TextView
+        android:id="@+id/textview_diachi_re"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_lienlac"
+        android:layout_toLeftOf="@id/imageview_remove"
+        android:layout_toRightOf="@+id/textview_ngaysinh"
+        android:text="diachi"
+        android:textColor="#303030"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"/>
+    <ImageView
+        android:id="@+id/imageview_edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/edit"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:id="@+id/imageview_remove"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/remove"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="3.5dp"
+        android:layout_below="@id/imageview_edit"/>
+
+</RelativeLayout>
