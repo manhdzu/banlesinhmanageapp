@@ -34,24 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         lvLeSinh = findViewById(R.id.listview_lesinh);
         arrayLeSinh = new ArrayList<>();
-        adapter = new LeSinhAdapter(getApplicationContext(), R.layout.dong_sinh_vien, arrayLeSinh);
+        adapter = new LeSinhAdapter(getApplicationContext(), R.layout.dong_le_sinh, arrayLeSinh);
         lvLeSinh.setAdapter(adapter);
 
         GetData(urlGetData);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_altarboy, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.menuAddAltarboy){
-            startActivity(new Intent(getApplicationContext(), AddAltarboy.class));
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void GetData(String url){
