@@ -12,4 +12,5 @@
     <string name="hint_username">Tên đăng nhập</string>
     <string name="hint_password">Mật khẩu</string>
     <string name="btn_login">Đăng nhập</string>
+    <string name="remember">Nhớ thông tin đăng nhập</string>
 </resources>

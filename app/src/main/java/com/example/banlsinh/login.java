@@ -1,10 +1,12 @@
 package com.example.banlsinh;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -20,6 +22,8 @@ public class login extends AppCompatActivity {
     public EditText edt_usr, edt_pass;
     private ProgressBar progressBar;
     private String username, password;
+    private CheckBox cbRemember;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -31,9 +35,12 @@ public class login extends AppCompatActivity {
         edt_usr = findViewById(R.id.username);
         edt_pass = findViewById(R.id.password);
         progressBar = findViewById(R.id.progress);
+        cbRemember = findViewById(R.id.remember);
 
-        username = edt_usr.getText().toString();
-        password = edt_pass.getText().toString();
+        sharedPreferences = getSharedPreferences("LoginData", MODE_PRIVATE);
+        edt_usr.setText(sharedPreferences.getString("username", null));
+        edt_pass.setText(sharedPreferences.getString("password", null));
+        cbRemember.setChecked(sharedPreferences.getBoolean("checked", false));
     }
 
     @Override
@@ -53,6 +60,7 @@ public class login extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         String[] field = new String[2];
                         field[0] = "username";
                         field[1] = "password";
@@ -66,6 +74,17 @@ public class login extends AppCompatActivity {
                                 String result = putData.getResult();
                                 if (result.equals("Dang nhap thanh cong")) {
                                     CustomToast.makeText(getApplicationContext(), "Đăng nhập thành công", CustomToast.LENGTH_SHORT, CustomToast.SUCCESS, true).show();
+                                    if(cbRemember.isChecked()){
+                                        editor.putString("username", username);
+                                        editor.putString("password", password);
+                                        editor.putBoolean("checked", true);
+                                        editor.commit();
+                                    }else{
+                                        editor.remove("username");
+                                        editor.remove("password");
+                                        editor.remove("checked");
+                                        editor.commit();
+                                    }
                                     startActivity(i);
                                     finish();
                                 } else if(result.equals("Ten dang nhap hoac mat khau sai"))

@@ -41,6 +41,7 @@ public class AddAltarboy extends AppCompatActivity {
                 if(type_tenthanh.isEmpty() || type_hoten.isEmpty() || type_diachi.isEmpty() || type_ngaysinh.isEmpty() || type_lienlac.isEmpty()){
                     Toast.makeText(context, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }else{
+                    getText();
                     Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
                 }
             }

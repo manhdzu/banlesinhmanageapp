@@ -12,15 +12,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:ignore="MissingConstraints"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:paddingVertical="7dp"
+            android:background="@color/bg_color">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".login"
-                android:background="@color/bg_color"
                 android:gravity="center"
+                tools:context=".login"
                 tools:ignore="ScrollViewSize">
-
                 <ImageView
                     android:id="@+id/logobls"
                     android:layout_width="wrap_content"
@@ -54,36 +54,63 @@
                     android:background="@drawable/edittextbackground"
                     android:backgroundTint="@color/white"
                     android:hint="@string/hint_password"
+                    android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:paddingHorizontal="18dp"
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/hint"
                     android:textSize="18sp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    android:importantForAutofill="no" />
+                    tools:ignore="TouchTargetSizeCheck" />
+                <RelativeLayout
+                    android:id="@+id/rlt_rmb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center">
+                    <CheckBox
+                        android:id="@+id/remember"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1.7dp"
+                        android:layout_marginRight="3.5dp"
+                        android:backgroundTint="@color/black"
+                        android:button="@drawable/custome_checkbox"
+                        android:theme="@style/colored_checkbox"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/remember"
+                        android:text="@string/remember"
+                        android:textColor="@color/text_color"
+                        android:textSize="15sp" />
+                </RelativeLayout>
                 <Button
                     android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:layout_below="@id/password"
-                    android:text="@string/btn_login"
-                    android:textSize="12sp"
-                    android:layout_marginTop="30dp"
+                    android:layout_below="@id/rlt_rmb"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/buttonbackground"
+                    android:text="@string/btn_login"
                     android:textColor="@color/white"
-                    android:layout_marginHorizontal="50dp"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
         </ScrollView>
         <ProgressBar
             android:id="@+id/progress"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="18dp"
             android:visibility="gone"
             tools:ignore="MissingConstraints"
             android:indeterminateTint="@color/main"
             android:layout_centerHorizontal="true"
-            android:indeterminate="true"/>
+            android:indeterminate="true"
+            android:layout_marginTop="-7.1dp"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
