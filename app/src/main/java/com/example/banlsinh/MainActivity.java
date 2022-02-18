@@ -2,11 +2,12 @@ package com.example.banlsinh;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.banlsinh.custom.CustomToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         lvLeSinh.setAdapter(adapter);
 
         GetData(urlGetData);
+
+        registerForContextMenu(lvLeSinh);
     }
 
     @Override
@@ -67,7 +71,28 @@ public class MainActivity extends AppCompatActivity {
 
         faAdd.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AddAltarboy.class)));
 
-        faExit.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), login.class)));
+        faExit.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), LogIn.class)));
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.floating_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()){
+            case R.id.opt_del:
+                Toast.makeText(getApplicationContext(), "Xoá", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.opt_edit:
+                Toast.makeText(getApplicationContext(), "Chỉnh sửa", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     private void GetData(String url){
@@ -92,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 },
                 error -> {
-                    Toast.makeText(getApplicationContext(), "Connection Failed", Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(), "Kết nối thất bại", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
                     error.printStackTrace();
                 });
         requestQueue.add(jsonArrayRequest);

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".LogIn">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,14 +13,14 @@
             android:layout_height="match_parent"
             tools:ignore="MissingConstraints"
             android:fillViewport="true"
-            android:paddingVertical="7dp"
             android:background="@color/bg_color">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                tools:context=".login"
-                tools:ignore="ScrollViewSize">
+                tools:context=".LogIn"
+                tools:ignore="ScrollViewSize"
+                android:paddingVertical="10dp">
                 <ImageView
                     android:id="@+id/logobls"
                     android:layout_width="wrap_content"

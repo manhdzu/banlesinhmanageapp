@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.banlsinh.custom.CustomToast;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class login extends AppCompatActivity {
+public class LogIn extends AppCompatActivity {
 
     private Button loginBtn;
     public EditText edt_usr, edt_pass;
@@ -91,7 +91,8 @@ public class login extends AppCompatActivity {
                                     CustomToast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu sai", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
                                 else if(result.equals("Loi ket noi"))
                                     CustomToast.makeText(getApplicationContext(), "Lỗi kết nối", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
-
+                                else
+                                    CustomToast.makeText(getApplicationContext(), "Vui lòng kết nối mạng", CustomToast.LENGTH_SHORT, CustomToast.WARNING, true).show();
                             }
                         }
                     }
