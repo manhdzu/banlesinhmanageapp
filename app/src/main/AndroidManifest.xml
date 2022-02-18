@@ -14,13 +14,13 @@
         android:theme="@style/Theme.BanLễSinh"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"/>
         <activity
-            android:name=".AddAltarboy"
+            android:name=".ui.AddAltarboy"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".ui.LogIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

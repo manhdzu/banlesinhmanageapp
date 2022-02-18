@@ -1,120 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddAltarboy"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.AddAltarboy"
+    android:background="@color/bg_color"
     android:layout_centerVertical="true"
     android:gravity="center">
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingVertical="10dp">
+
             <TextView
                 android:id="@+id/themlesinh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thêm Lễ Sinh"
-                android:textSize="30dp"
-                android:textColor="#CD1515"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:text="@string/th_m_l_sinh"
+                android:textColor="@color/main"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/them_tenthanh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_below="@+id/themlesinh"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
-                android:hint="Tên Thánh"
-                android:textColor="#373737"
-                android:textColorHint="#959595"
-                android:textSize="20dp"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/t_n_th_nh"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:backgroundTint="#CCCCCC"/>
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:paddingHorizontal="18dp"
+                android:background="@drawable/edittext_background"/>
+
             <EditText
                 android:id="@+id/them_hoten"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/them_tenthanh"
-                android:hint="Họ tên"
-                android:textSize="20dp"
-                android:textColorHint="#959595"
-                android:textColor="#373737"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/h_t_n"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:backgroundTint="#CCCCCC"/>
+                android:paddingHorizontal="18dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"/>
+
             <EditText
                 android:id="@+id/them_ngaysinh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/them_hoten"
-                android:hint="Ngày sinh"
-                android:textSize="20dp"
-                android:textColorHint="#959595"
-                android:textColor="#373737"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/ng_y_sinh"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:backgroundTint="#CCCCCC"/>
+                android:paddingHorizontal="18dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"/>
+
             <EditText
                 android:id="@+id/them_lienlac"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/them_ngaysinh"
-                android:hint="Liên lạc"
-                android:textSize="20dp"
-                android:textColorHint="#959595"
-                android:textColor="#373737"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
+                android:hint="@string/li_n_l_c"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:backgroundTint="#CCCCCC"/>
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:paddingHorizontal="18dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="5dp"/>
+
             <EditText
                 android:id="@+id/them_diachi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/them_lienlac"
-                android:hint="Địa chỉ"
-                android:textSize="20dp"
-                android:textColorHint="#959595"
-                android:textColor="#373737"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#CCCCCC"/>
+                android:background="@drawable/edittext_background"
+                android:hint="@string/a_ch"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingHorizontal="18dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"/>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/them_diachi"
-                android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
-                <Button
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_them"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#5DE84D"
-                    android:textColor="@color/white"
-                    android:text="THÊM"
-                    android:layout_marginRight="30dp"/>
-                <Button
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="30dp"
+                    app:cornerRadius="200dp"
+                    android:text="@string/th_m"
+                    android:textColor="@color/bg_color"
+                    android:elevation="2dp"/>
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_huy"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/button_them"
-                    android:backgroundTint="#EA4141"
-                    android:textColor="@color/white"
-                    android:text="HUỶ"
-                    android:layout_marginLeft="30dp"/>
-
+                    android:layout_height="60dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/button_them"
+                    android:backgroundTint="@color/bg_color"
+                    android:elevation="2dp"
+                    android:text="@string/hu"
+                    android:textColor="@color/main"
+                    app:cornerRadius="200dp"
+                    app:strokeColor="@color/main"
+                    app:strokeWidth="2dp" />
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
