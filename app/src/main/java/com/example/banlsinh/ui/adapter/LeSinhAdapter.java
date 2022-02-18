@@ -1,4 +1,4 @@
-package com.example.banlsinh;
+package com.example.banlsinh.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+
+import com.example.banlsinh.R;
 
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class LeSinhAdapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         TextView txtTenThanh, txtHoten, txtNgaySinh, txtLienlac, txtDiaChi;
         ImageView imgDelete, imgEdit;
     }
@@ -53,7 +55,7 @@ public class LeSinhAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         ViewHolder holder;
-        if(view == null){
+        if (view == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(layout, null);
@@ -65,8 +67,8 @@ public class LeSinhAdapter extends BaseAdapter {
             holder.imgDelete = view.findViewById(R.id.imageview_remove);
             holder.imgEdit = view.findViewById(R.id.imageview_edit);
             view.setTag(holder);
-        }else{
-            holder = (ViewHolder)  view.getTag();
+        } else {
+            holder = (ViewHolder) view.getTag();
         }
 
         LeSinh leSinh = leSinhList.get(i);

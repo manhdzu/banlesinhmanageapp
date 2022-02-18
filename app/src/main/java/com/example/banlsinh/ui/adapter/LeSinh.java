@@ -1,4 +1,4 @@
-package com.example.banlsinh;
+package com.example.banlsinh.ui.adapter;
 
 public class LeSinh {
     private int Id;

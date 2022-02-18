@@ -1,6 +1,8 @@
-package com.example.banlsinh;
+package com.example.banlsinh.ui;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -19,7 +21,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.banlsinh.ui.adapter.LeSinh;
+import com.example.banlsinh.ui.adapter.LeSinhAdapter;
+import com.example.banlsinh.R;
 import com.example.banlsinh.custom.CustomToast;
+import com.example.banlsinh.ultility.NetworkChangeListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton faMenu, faExit, faAdd;
     private Animation fabOpen, fabClose, fabFromBottom, fabToBottom, fabFromLeft, fabToLeft;
     private boolean isOpen = false;
+    public NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +72,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, filter);
         super.onStart();
+    }
 
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         faMenu.setOnClickListener(view -> animateFab());
 
         faAdd.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AddAltarboy.class)));
@@ -83,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo adapterContextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.opt_del:
                 Toast.makeText(getApplicationContext(), "Xoá", Toast.LENGTH_SHORT).show();
                 return true;
@@ -95,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void GetData(String url){
+    private void GetData(String url) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-                    for(int i = 0; i < response.length(); i++){
+                    for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject object = response.getJSONObject(i);
                             arrayLeSinh.add(new LeSinh(
@@ -110,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                     object.getString("lienlac"),
                                     object.getString("diachi")
                             ));
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
@@ -124,21 +143,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void animateFab(){
-        if(isOpen){
+    private void animateFab() {
+        if (isOpen) {
             faMenu.startAnimation(fabClose);
             faAdd.startAnimation(fabToBottom);
             faExit.startAnimation(fabToLeft);
             faAdd.setClickable(false);
             faExit.setClickable(false);
-            isOpen=false;
-        }else{
+            isOpen = false;
+        } else {
             faMenu.startAnimation(fabOpen);
             faAdd.startAnimation(fabFromBottom);
             faExit.startAnimation(fabFromLeft);
             faAdd.setClickable(true);
             faExit.setClickable(true);
-            isOpen=true;
+            isOpen = true;
         }
     }
 }

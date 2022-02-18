@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogIn">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.LogIn">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                tools:context=".LogIn"
+                tools:context=".ui.LogIn"
                 tools:ignore="ScrollViewSize"
                 android:paddingVertical="10dp">
                 <ImageView
@@ -27,6 +28,7 @@
                     android:layout_height="200dp"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/logo" />
+
                 <EditText
                     android:id="@+id/username"
                     android:layout_width="match_parent"
@@ -35,8 +37,7 @@
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="40dp"
                     android:autofillHints=""
-                    android:background="@drawable/edittextbackground"
-                    android:backgroundTint="@color/white"
+                    android:background="@drawable/edittext_background"
                     android:hint="@string/hint_username"
                     android:inputType="text"
                     android:paddingHorizontal="18dp"
@@ -44,6 +45,7 @@
                     android:textColorHint="@color/hint"
                     android:textSize="18sp"
                     tools:ignore="TouchTargetSizeCheck" />
+
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
@@ -51,7 +53,7 @@
                     android:layout_below="@+id/username"
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/edittextbackground"
+                    android:background="@drawable/edittext_background"
                     android:backgroundTint="@color/white"
                     android:hint="@string/hint_password"
                     android:importantForAutofill="no"
@@ -87,18 +89,19 @@
                         android:textColor="@color/text_color"
                         android:textSize="15sp" />
                 </RelativeLayout>
-                <Button
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/login"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="50dp"
                     android:layout_below="@id/rlt_rmb"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/buttonbackground"
+                    app:cornerRadius="200dp"
                     android:text="@string/btn_login"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"/>
             </RelativeLayout>
         </ScrollView>
         <ProgressBar

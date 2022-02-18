@@ -6,4 +6,15 @@
     <string name="remember">Nhớ thông tin đăng nhập</string>
     <string name="edit">Chỉnh sửa</string>
     <string name="remove">Xoá</string>
+    <string name="oops">OOPS!</string>
+    <string name="th_m_l_sinh">Thêm Lễ Sinh</string>
+    <string name="t_n_th_nh">Tên Thánh</string>
+    <string name="h_t_n">Họ tên</string>
+    <string name="ng_y_sinh">Ngày sinh</string>
+    <string name="li_n_l_c">Liên lạc</string>
+    <string name="a_ch">Địa chỉ</string>
+    <string name="th_m">THÊM</string>
+    <string name="hu">HUỶ</string>
+    <string name="th_l_i">Thử lại</string>
+    <string name="kh_ng_c_k_t_n_i_m_ng">Không có kết nối mạng</string>
 </resources>
