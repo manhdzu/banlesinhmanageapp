@@ -1,6 +1,7 @@
 package com.example.banlsinh.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -56,12 +60,13 @@ public class MainActivity extends AppCompatActivity {
     public ListView lvLeSinh;
     public ArrayList<LeSinh> arrayLeSinh;
     public LeSinhAdapter adapter;
-    private FloatingActionButton faMenu, faExit, faAdd;
-    private Animation fabOpen, fabClose, fabFromBottom, fabToBottom, fabFromLeft, fabToLeft;
+    private FloatingActionButton faMenu, faExit, faAdd, faUp;
+    private Animation fabOpen, fabClose, fabFromBottom, fabToBottom, fabFromLeft, fabToLeft, fabFromLeftBot, fabToLeftBot;
     private boolean isOpen = false;
     public NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     private Context context;
     private ProgressBar getProgress;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +79,18 @@ public class MainActivity extends AppCompatActivity {
         faMenu = findViewById(R.id.floating_menu);
         faAdd = findViewById(R.id.add_altarboy);
         faExit = findViewById(R.id.logout);
+        faUp = findViewById(R.id.toplist);
         getProgress = findViewById(R.id.progress_loading_list);
-        fabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_open);
-        fabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_close);
-        fabToBottom = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.to_bottom);
-        fabFromBottom = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.from_bottom);
-        fabFromLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.from_left);
-        fabToLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.to_left);
+        swipeRefreshLayout = findViewById(R.id.refresh_layout);
+        fabOpen = AnimationUtils.loadAnimation(context, R.anim.rotate_open);
+        fabClose = AnimationUtils.loadAnimation(context, R.anim.rotate_close);
+        fabToBottom = AnimationUtils.loadAnimation(context, R.anim.to_bottom);
+        fabFromBottom = AnimationUtils.loadAnimation(context, R.anim.from_bottom);
+        fabFromLeft = AnimationUtils.loadAnimation(context, R.anim.from_left);
+        fabToLeft = AnimationUtils.loadAnimation(context, R.anim.to_left);
+        fabFromLeftBot = AnimationUtils.loadAnimation(context, R.anim.from_bottom_left);
+        fabToLeftBot = AnimationUtils.loadAnimation(context, R.anim.to_bottom_left);
 
-        getProgress.setVisibility(View.VISIBLE);
         GetData(urlGetData);
         arrayLeSinh = new ArrayList<>();
         adapter = new LeSinhAdapter(this, R.layout.dong_le_sinh, arrayLeSinh);
@@ -92,6 +100,25 @@ public class MainActivity extends AppCompatActivity {
         faMenu.setOnClickListener(view -> animateFab());
         faAdd.setOnClickListener(view -> startActivity(new Intent(context, AddAltarboy.class)));
         faExit.setOnClickListener(view -> startActivity(new Intent(context, LogIn.class)));
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onRefresh() {
+                GetData(urlGetData);
+                onRefesh(false);
+            }
+        });
+        lvLeSinh.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {}
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                int topRowVerticalPosition = (lvLeSinh == null || lvLeSinh.getChildCount() == 0) ? 0 : lvLeSinh.getChildAt(0).getTop();
+                swipeRefreshLayout.setEnabled(i == 0 && topRowVerticalPosition >= 0);
+            }
+        });
     }
 
     @Override
@@ -109,7 +136,13 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    private void onRefesh(boolean flag) {
+        swipeRefreshLayout.setRefreshing(flag);
+        swipeRefreshLayout.setColorSchemeResources(R.color.main);
+    }
+
     private void GetData(String url) {
+        onRefesh(true);
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
@@ -136,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     error.printStackTrace();
                 });
         requestQueue.add(jsonArrayRequest);
+        onRefesh(false);
     }
 
     public void RemoveAltarBoy(int idLS){
@@ -184,17 +218,21 @@ public class MainActivity extends AppCompatActivity {
     private void animateFab() {
         if (isOpen) {
             faMenu.startAnimation(fabClose);
-            faAdd.startAnimation(fabToBottom);
+            faUp.startAnimation(fabToBottom);
             faExit.startAnimation(fabToLeft);
+            faAdd.startAnimation(fabToLeftBot);
             faAdd.setClickable(false);
             faExit.setClickable(false);
+            faUp.setClickable(false);
             isOpen = false;
         } else {
             faMenu.startAnimation(fabOpen);
-            faAdd.startAnimation(fabFromBottom);
+            faUp.startAnimation(fabFromBottom);
             faExit.startAnimation(fabFromLeft);
+            faAdd.startAnimation(fabFromLeftBot);
             faAdd.setClickable(true);
             faExit.setClickable(true);
+            faUp.setClickable(true);
             isOpen = true;
         }
     }

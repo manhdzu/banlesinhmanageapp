@@ -4,7 +4,9 @@
     android:duration="300">
     <translate
         android:fromXDelta="0%"
-        android:toXDelta="100%"/>
+        android:toXDelta="100%"
+        android:fromYDelta="0%"
+        android:toYDelta="100%"/>
     <scale
         android:pivotY="50%"
         android:pivotX="50%"
