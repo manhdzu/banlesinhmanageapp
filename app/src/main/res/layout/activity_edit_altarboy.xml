@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.EditAltarBoy"
+    android:background="@color/bg_color"
+    android:layout_centerVertical="true"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/chinhsualesinh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/chinh_su_le_sinh"
+                android:textColor="@color/main"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/sua_tenthanh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/chinhsualesinh"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/t_n_th_nh"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingHorizontal="18dp"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/sua_hoten"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/sua_tenthanh"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/h_t_n"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingHorizontal="18dp"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/sua_ngaysinh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/sua_hoten"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/ng_y_sinh"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingHorizontal="18dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                android:selectAllOnFocus="true"/>
+
+            <EditText
+                android:id="@+id/sua_lienlac"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/sua_ngaysinh"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/li_n_l_c"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingHorizontal="18dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:selectAllOnFocus="true"/>
+
+            <EditText
+                android:id="@+id/sua_diachi"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/sua_lienlac"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/a_ch"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:paddingHorizontal="18dp"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hint"
+                android:textSize="18sp"
+                android:lineSpacingExtra="5dp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sua_diachi"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="30dp"
+                    android:elevation="2dp"
+                    android:text="@string/capnhat"
+                    android:textColor="@color/bg_color"
+                    app:cornerRadius="200dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_huy1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/button_update"
+                    android:backgroundTint="@color/bg_color"
+                    android:elevation="2dp"
+                    android:text="@string/hu"
+                    android:textColor="@color/main"
+                    app:cornerRadius="200dp"
+                    app:strokeColor="@color/main"
+                    app:strokeWidth="2dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -54,4 +54,14 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_round_add_24" />
+    <ProgressBar
+        android:id="@+id/progress_loading_list"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints"
+        android:indeterminateTint="@color/main"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="true"
+        android:layout_marginTop="10dp"/>
 </RelativeLayout>

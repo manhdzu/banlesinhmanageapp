@@ -1,6 +1,8 @@
 package com.example.banlsinh.ui.adapter;
 
-public class LeSinh {
+import java.io.Serializable;
+
+public class LeSinh implements Serializable {
     private int Id;
     private String tenthanh, hoten, ngaysinh, lienlac, diachi;
 

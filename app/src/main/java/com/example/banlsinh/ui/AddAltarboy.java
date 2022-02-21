@@ -51,10 +51,9 @@ public class AddAltarboy extends AppCompatActivity {
         btn_cofirm.setOnClickListener(view -> {
             getText();
             if (type_tenthanh.isEmpty() || type_hoten.isEmpty() || type_diachi.isEmpty() || type_ngaysinh.isEmpty() || type_lienlac.isEmpty()) {
-                CustomToast.makeText(context, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT, CustomToast.WARNING, true).show();
+                CustomToast.makeText(context, getString(R.string.pleaseType), Toast.LENGTH_SHORT, CustomToast.WARNING, true).show();
             } else {
                 AddAltarBoyFunc(urlInsert);
-                startActivity(new Intent(context, MainActivity.class));
             }
         });
 
@@ -67,11 +66,11 @@ public class AddAltarboy extends AppCompatActivity {
                 response -> {
                     if (response.trim().equals("success")) {
                         CustomToast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT, CustomToast.SUCCESS, true).show();
-                        finish();
+                        startActivity(new Intent(context, MainActivity.class));;
                     } else
                         CustomToast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT, CustomToast.ERROR, true).show();
                 },
-                error -> CustomToast.makeText(context, "Đã xảy ra lỗi", Toast.LENGTH_SHORT, CustomToast.ERROR, true).show()) {
+                error -> CustomToast.makeText(context, getString(R.string.responseError), Toast.LENGTH_SHORT, CustomToast.ERROR, true).show()) {
             @Nullable
             @Override
             protected Map<String, String> getParams() {

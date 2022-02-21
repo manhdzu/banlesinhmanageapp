@@ -17,4 +17,8 @@
     <string name="hu">HUỶ</string>
     <string name="th_l_i">Thử lại</string>
     <string name="kh_ng_c_k_t_n_i_m_ng">Không có kết nối mạng</string>
+    <string name="chinh_su_le_sinh">Chỉnh sửa Lễ Sinh</string>
+    <string name="capnhat">Cập nhật</string>
+    <string name="responseError">Đã xảy ra lỗi</string>
+    <string name="pleaseType">Vui lòng nhập đầy đủ thông tin</string>
 </resources>

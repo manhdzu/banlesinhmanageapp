@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/listview_item"
     android:paddingHorizontal="15dp"
-    android:paddingVertical="10dp">
+    android:paddingVertical="10dp"
+    android:id="@+id/item_layout">
+
     <TextView
         android:id="@+id/textview_tenthanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Tên Thánh "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/main"
-        android:textSize="18sp"/>
-    <TextView
-        android:id="@+id/textview_hoten"
-        android:text="Họ và Tên"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:textColor="@color/main"
         android:textSize="18sp"
-        android:layout_toRightOf="@id/textview_tenthanh"/>
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/textview_hoten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textview_tenthanh"
+        android:text="Họ và Tên"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/textview_ngaysinh"
         android:text="Ngày sinh: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#616161"
-        android:textSize="15sp"
-        android:layout_below="@id/textview_hoten"/>
+        android:textSize="16sp"
+        android:layout_below="@id/textview_tenthanh"
+        android:layout_marginBottom="3dp"/>
+
     <TextView
         android:id="@+id/textview_ngaysinh_re"
         android:layout_width="wrap_content"
@@ -39,16 +46,17 @@
         android:layout_toRightOf="@+id/textview_ngaysinh"
         android:text="ngaysinh"
         android:textColor="#303030"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="16sp"
+        android:textStyle="bold"/>
     <TextView
         android:id="@+id/textview_lienlac"
         android:text="Liên lạc: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#616161"
-        android:textSize="15sp"
-        android:layout_below="@id/textview_ngaysinh"/>
+        android:textSize="16sp"
+        android:layout_below="@id/textview_ngaysinh"
+        android:layout_marginBottom="3dp"/>
     <TextView
         android:id="@+id/textview_lienlac_re"
         android:layout_width="wrap_content"
@@ -57,7 +65,7 @@
         android:layout_toRightOf="@+id/textview_ngaysinh"
         android:text="lienlac"
         android:textColor="#303030"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginLeft="5dp"/>
     <TextView
@@ -66,40 +74,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#616161"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:layout_below="@id/textview_lienlac"/>
-    <ImageView
-        android:id="@+id/imageview_edit"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_below="@+id/textview_hoten"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="7dp"
-        android:layout_toRightOf="@+id/textview_lienlac_re"
-        android:background="@drawable/circle"
-        android:paddingVertical="2dp"
-        android:src="@drawable/ic_baseline_create_24"/>
-    <ImageView
-        android:id="@+id/imageview_remove"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_toRightOf="@id/imageview_edit"
-        android:layout_below="@+id/textview_hoten"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/circle"
-        android:paddingVertical="2dp"
-        android:src="@drawable/ic_baseline_clear_24" />
     <TextView
         android:id="@+id/textview_diachi_re"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview_lienlac"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/textview_ngaysinh"
         android:text="diachi"
         android:textColor="#303030"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginLeft="5dp"/>
+        android:lineSpacingExtra="3dp"/>
 
 </RelativeLayout>
