@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
-    android:orientation="vertical"
+    android:layout_gravity="center"
     android:background="@drawable/dialog_bg"
-    android:layout_gravity="center">
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_round_signal_wifi_off_24"
-            tools:ignore="ContentDescription"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/oops"
-            android:textColor="@color/hint"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_marginTop="-15dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/kh_ng_c_k_t_n_i_m_ng"
-            android:textColor="@color/hint"
-            android:textSize="20sp"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_retry"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:cornerRadius="200dp"
-            android:backgroundTint="@color/hint"
-            android:text="@string/th_l_i"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="12dp"
-            android:textColor="@color/white"/>
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_round_signal_wifi_off_24"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:text="@string/oops"
+        android:textColor="@color/hint"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kh_ng_c_k_t_n_i_m_ng"
+        android:textColor="@color/hint"
+        android:textSize="20sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/hint"
+        android:text="@string/th_l_i"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="200dp" />
 </LinearLayout>

@@ -4,13 +4,23 @@ import java.io.Serializable;
 
 public class LeSinh implements Serializable {
     private int Id;
-    private String tenthanh, hoten, ngaysinh, lienlac, diachi;
+    private final int ngaysinh;
+    private final int thangsinh;
+    private final int namsinh;
+    private final String tenthanh;
+    private final String ho;
+    private final String ten;
+    private final String lienlac;
+    private final String diachi;
 
-    public LeSinh(int id, String tenthanh, String hoten, String ngaysinh, String lienlac, String diachi) {
+    public LeSinh(int id, String tenthanh, String ho, String ten, int ngaysinh, int thangsinh, int namsinh, String lienlac, String diachi) {
         Id = id;
-        this.tenthanh = tenthanh;
-        this.hoten = hoten;
         this.ngaysinh = ngaysinh;
+        this.thangsinh = thangsinh;
+        this.namsinh = namsinh;
+        this.tenthanh = tenthanh;
+        this.ho = ho;
+        this.ten = ten;
         this.lienlac = lienlac;
         this.diachi = diachi;
     }
@@ -23,43 +33,37 @@ public class LeSinh implements Serializable {
         Id = id;
     }
 
+    public int getNgaysinh() {
+        return ngaysinh;
+    }
+
+    public int getThangsinh() {
+        return thangsinh;
+    }
+
+    public int getNamsinh() {
+        return namsinh;
+    }
+
     public String getTenthanh() {
         return tenthanh;
     }
 
-    public void setTenthanh(String tenthanh) {
-        this.tenthanh = tenthanh;
+    public String getHo() {
+        return ho;
     }
 
-    public String getHoten() {
-        return hoten;
-    }
-
-    public void setHoten(String hoten) {
-        this.hoten = hoten;
-    }
-
-    public String getNgaysinh() {
-        return ngaysinh;
-    }
-
-    public void setNgaysinh(String ngaysinh) {
-        this.ngaysinh = ngaysinh;
+    public String getTen() {
+        return ten;
     }
 
     public String getLienlac() {
         return lienlac;
     }
 
-    public void setLienlac(String lienlac) {
-        this.lienlac = lienlac;
-    }
-
     public String getDiachi() {
         return diachi;
     }
 
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
-    }
 }
+

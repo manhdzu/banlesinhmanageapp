@@ -17,14 +17,11 @@ public class CustomToast extends Toast {
     public static int SUCCESS = 1;
     public static int WARNING = 2;
 
-    private static long SHORT = 2000;
-    private static long LONG = 5000;
-
     public CustomToast(Context context) {
         super(context);
     }
 
-    public static Toast makeText(Context context, String message, int duration, int type, boolean androidicon) {
+    public static Toast makeText(Context context, String message, int duration, int type) {
         Toast toast = new Toast(context);
         toast.setDuration(duration);
         View layout = LayoutInflater.from(context).inflate(R.layout.custome_toast, null, false);

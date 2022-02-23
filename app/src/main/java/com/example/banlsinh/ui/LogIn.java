@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,8 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.banlsinh.R;
 import com.example.banlsinh.custom.CustomToast;
-import com.example.banlsinh.ui.MainActivity;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
+
+import java.util.Objects;
 
 public class LogIn extends AppCompatActivity {
 
@@ -26,9 +28,10 @@ public class LogIn extends AppCompatActivity {
     private CheckBox cbRemember;
     private SharedPreferences sharedPreferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -51,49 +54,51 @@ public class LogIn extends AppCompatActivity {
         loginBtn.setOnClickListener(view -> {
             username = edt_usr.getText().toString();
             password = edt_pass.getText().toString();
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
 
             if (username.isEmpty() || password.isEmpty())
-                CustomToast.makeText(getApplicationContext(), "Yêu cầu tên đăng nhập và mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.WARNING, true).show();
+                CustomToast.makeText(getApplicationContext(), "Yêu cầu tên đăng nhập và mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.WARNING).show();
             else {
                 progressBar.setVisibility(View.VISIBLE);
                 Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        String[] field = new String[2];
-                        field[0] = "username";
-                        field[1] = "password";
-                        String[] data = new String[2];
-                        data[0] = username;
-                        data[1] = password;
-                        PutData putData = new PutData("https://banlesinhgiaoxutanthanh.000webhostapp.com/user/login.php", "POST", field, data);
-                        if (putData.startPut()) {
-                            if (putData.onComplete()) {
-                                progressBar.setVisibility(View.GONE);
-                                String result = putData.getResult();
-                                if (result.equals("Dang nhap thanh cong")) {
-                                    CustomToast.makeText(getApplicationContext(), "Đăng nhập thành công", CustomToast.LENGTH_SHORT, CustomToast.SUCCESS, true).show();
+                handler.post(() -> {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    String[] field = new String[2];
+                    field[0] = "username";
+                    field[1] = "password";
+                    String[] data = new String[2];
+                    data[0] = username;
+                    data[1] = password;
+                    PutData putData = new PutData("https://banlesinhgiaoxutanthanh.000webhostapp.com/user/login.php", "POST", field, data);
+                    if (putData.startPut()) {
+                        if (putData.onComplete()) {
+                            progressBar.setVisibility(View.GONE);
+                            String result = putData.getResult();
+                            switch (result) {
+                                case "Dang nhap thanh cong":
+                                    CustomToast.makeText(getApplicationContext(), "Đăng nhập thành công", CustomToast.LENGTH_SHORT, CustomToast.SUCCESS).show();
                                     if (cbRemember.isChecked()) {
                                         editor.putString("username", username);
                                         editor.putString("password", password);
                                         editor.putBoolean("checked", true);
-                                        editor.commit();
                                     } else {
                                         editor.remove("username");
                                         editor.remove("password");
                                         editor.remove("checked");
-                                        editor.commit();
                                     }
+                                    editor.putString("uploadby", username);
+                                    editor.apply();
                                     startActivity(i);
-                                    finish();
-                                } else if (result.equals("Ten dang nhap hoac mat khau sai"))
-                                    CustomToast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu sai", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
-                                else if (result.equals("Loi ket noi"))
-                                    CustomToast.makeText(getApplicationContext(), "Lỗi kết nối", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
-                                else
-                                    CustomToast.makeText(getApplicationContext(), "Vui lòng kết nối mạng", CustomToast.LENGTH_SHORT, CustomToast.WARNING, true).show();
+                                    break;
+                                case "Ten dang nhap hoac mat khau sai":
+                                    CustomToast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu sai", CustomToast.LENGTH_SHORT, CustomToast.ERROR).show();
+                                    break;
+                                case "Loi ket noi":
+                                    CustomToast.makeText(getApplicationContext(), "Lỗi kết nối", CustomToast.LENGTH_SHORT, CustomToast.ERROR).show();
+                                    break;
+                                default:
+                                    CustomToast.makeText(getApplicationContext(), "Vui lòng kết nối mạng", CustomToast.LENGTH_SHORT, CustomToast.WARNING).show();
+                                    break;
                             }
                         }
                     }

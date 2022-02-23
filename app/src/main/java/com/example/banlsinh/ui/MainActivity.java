@@ -1,50 +1,39 @@
 package com.example.banlsinh.ui;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
+import androidx.appcompat.widget.SearchView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.banlsinh.ui.adapter.LeSinh;
-import com.example.banlsinh.ui.adapter.LeSinhAdapter;
 import com.example.banlsinh.R;
 import com.example.banlsinh.custom.CustomToast;
+import com.example.banlsinh.ui.adapter.LeSinh;
+import com.example.banlsinh.ui.adapter.LeSinhAdapter;
 import com.example.banlsinh.ultility.NetworkChangeListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
-import org.jetbrains.annotations.Contract;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,9 +43,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    public String urlGetData = "http://banlesinhgiaoxutanthanh.000webhostapp.com/lesinh/get.php";
-    public String urlRemove = "http://banlesinhgiaoxutanthanh.000webhostapp.com/lesinh/remove.php";
+    public String urlGetData = "http://banlesinhgiaoxutanthanh.000webhostapp.com/lesinh/2.0/get.php";
+    public String urlRemove = "http://banlesinhgiaoxutanthanh.000webhostapp.com/lesinh/2.0/remove.php";
     public ListView lvLeSinh;
     public ArrayList<LeSinh> arrayLeSinh;
     public LeSinhAdapter adapter;
@@ -65,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isOpen = false;
     public NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     private Context context;
-    private ProgressBar getProgress;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -80,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
         faAdd = findViewById(R.id.add_altarboy);
         faExit = findViewById(R.id.logout);
         faUp = findViewById(R.id.toplist);
-        getProgress = findViewById(R.id.progress_loading_list);
+        ProgressBar getProgress = findViewById(R.id.progress_loading_list);
         swipeRefreshLayout = findViewById(R.id.refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.main);
         fabOpen = AnimationUtils.loadAnimation(context, R.anim.rotate_open);
         fabClose = AnimationUtils.loadAnimation(context, R.anim.rotate_close);
         fabToBottom = AnimationUtils.loadAnimation(context, R.anim.to_bottom);
@@ -99,19 +87,20 @@ public class MainActivity extends AppCompatActivity {
 
         faMenu.setOnClickListener(view -> animateFab());
         faAdd.setOnClickListener(view -> startActivity(new Intent(context, AddAltarboy.class)));
-        faExit.setOnClickListener(view -> startActivity(new Intent(context, LogIn.class)));
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onRefresh() {
-                GetData(urlGetData);
-                onRefesh(false);
-            }
+        faExit.setOnClickListener(view -> {
+            startActivity(new Intent(context, LogIn.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
+        faUp.setOnClickListener(view -> {
+            lvLeSinh.smoothScrollToPositionFromTop(0, 0);
+            onRefeshData();
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(this::onRefeshData);
         lvLeSinh.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int i) {}
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
 
             @Override
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
@@ -126,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListener, filter);
         RequestPermission();
-
         super.onStart();
     }
 
@@ -136,13 +124,14 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    private void onRefesh(boolean flag) {
-        swipeRefreshLayout.setRefreshing(flag);
+    private void onRefeshData() {
+        swipeRefreshLayout.setRefreshing(true);
         swipeRefreshLayout.setColorSchemeResources(R.color.main);
+        GetData(urlGetData);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     private void GetData(String url) {
-        onRefesh(true);
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
@@ -153,8 +142,11 @@ public class MainActivity extends AppCompatActivity {
                             arrayLeSinh.add(new LeSinh(
                                     object.getInt("ID"),
                                     object.getString("tenthanh"),
-                                    object.getString("hoten"),
-                                    object.getString("ngaysinh"),
+                                    object.getString("ho"),
+                                    object.getString("ten"),
+                                    object.getInt("ngaysinh"),
+                                    object.getInt("thangsinh"),
+                                    object.getInt("namsinh"),
                                     object.getString("lienlac"),
                                     object.getString("diachi")
                             ));
@@ -165,33 +157,27 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 },
                 error -> {
-                    CustomToast.makeText(context, "Kết nối thất bại", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
+                    CustomToast.makeText(context, "Kết nối thất bại", CustomToast.LENGTH_SHORT, CustomToast.ERROR).show();
                     error.printStackTrace();
                 });
         requestQueue.add(jsonArrayRequest);
-        onRefesh(false);
     }
 
-    public void RemoveAltarBoy(int idLS){
+    public void RemoveAltarBoy(int idLS) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlRemove,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response.trim().equals("success")) {
-                            CustomToast.makeText(context, "Xoá thành công", CustomToast.LENGTH_SHORT, CustomToast.SUCCESS, true).show();
-                            GetData(urlGetData);
-                        } else CustomToast.makeText(context, getString(R.string.responseError), CustomToast.LENGTH_SHORT, CustomToast.SUCCESS, true).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                response -> {
+                    if (response.trim().equals("success")) {
+                        CustomToast.makeText(context, "Xoá thành công", CustomToast.LENGTH_SHORT, CustomToast.SUCCESS).show();
+                        GetData(urlGetData);
+                    } else
+                        CustomToast.makeText(context, getString(R.string.responseError), CustomToast.LENGTH_SHORT, CustomToast.SUCCESS).show();
+                }, error -> {
 
-            }
-        }){
-            @Nullable
+        }) {
+            @NonNull
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("ID", String.valueOf(idLS));
                 return params;
@@ -200,14 +186,16 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void RequestPermission(){
+    private void RequestPermission() {
         TedPermission.create()
                 .setPermissionListener(new PermissionListener() {
                     @Override
-                    public void onPermissionGranted() {}
+                    public void onPermissionGranted() {
+                    }
 
                     @Override
-                    public void onPermissionDenied(List<String> deniedPermissions) { }
+                    public void onPermissionDenied(List<String> deniedPermissions) {
+                    }
                 })
                 .setPermissions(Manifest.permission.CALL_PHONE)
                 .setDeniedTitle("Mở cài đặt Quyền cho ứng dụng")
@@ -237,4 +225,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.searching_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Nhập để tìm kiếm");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapter.getFilter().filter(newText);
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 }

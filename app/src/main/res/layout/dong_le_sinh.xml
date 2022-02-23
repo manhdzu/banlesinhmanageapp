@@ -1,92 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/listview_item"
     android:paddingHorizontal="15dp"
-    android:paddingVertical="10dp"
-    android:id="@+id/item_layout">
+    android:paddingVertical="10dp">
 
     <TextView
         android:id="@+id/textview_tenthanh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên Thánh "
-        android:textColor="@color/main"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="5dp"/>
-
-    <TextView
-        android:id="@+id/textview_hoten"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/textview_tenthanh"
-        android:text="Họ và Tên"
+        android:layout_marginBottom="5dp"
+        android:text="@string/t_n_th_nh"
         android:textColor="@color/main"
         android:textSize="18sp"
         android:textStyle="bold" />
+
     <TextView
-        android:id="@+id/textview_ngaysinh"
-        android:text="Ngày sinh: "
+        android:id="@+id/textview_ho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#616161"
-        android:textSize="16sp"
+        android:layout_toEndOf="@id/textview_tenthanh"
+        android:text="@string/ho"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/textview_ho"
+        android:text="@string/ten"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_ngaysinh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textview_tenthanh"
-        android:layout_marginBottom="3dp"/>
+        android:layout_marginBottom="3dp"
+        android:text="Ngày sinh: "
+        android:textColor="@color/subtitlecolor"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textview_ngaysinh_re"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview_tenthanh"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/textview_ngaysinh"
-        android:text="ngaysinh"
-        android:textColor="#303030"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/textview_ngaysinh"
+        android:text="@string/ng_y_sinh"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
     <TextView
-        android:id="@+id/textview_lienlac"
-        android:text="Liên lạc: "
+        android:id="@+id/textview_strikethrough1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#616161"
+        android:layout_below="@+id/textview_tenthanh"
+        android:layout_toEndOf="@+id/textview_ngaysinh_re"
+        android:text="@string/strikethrough"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_thangsinh_re"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_tenthanh"
+        android:layout_toEndOf="@+id/textview_strikethrough1"
+        android:text="@string/thangsinh"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_strikethrough2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_tenthanh"
+        android:layout_toEndOf="@+id/textview_thangsinh_re"
+        android:text="@string/strikethrough"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_namsinh_re"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_tenthanh"
+        android:layout_toEndOf="@+id/textview_strikethrough2"
+        android:text="@string/namsinh"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_lienlac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textview_ngaysinh"
-        android:layout_marginBottom="3dp"/>
+        android:layout_marginBottom="3dp"
+        android:text="Liên lạc: "
+        android:textColor="@color/subtitlecolor"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
     <TextView
         android:id="@+id/textview_lienlac_re"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview_ngaysinh"
-        android:layout_toRightOf="@+id/textview_ngaysinh"
-        android:text="lienlac"
-        android:textColor="#303030"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/textview_ngaysinh"
+        android:text="@string/lienlac"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"/>
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/textview_diachi"
-        android:text="Địa chỉ: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#616161"
+        android:layout_below="@id/textview_lienlac"
+        android:text="Địa chỉ: "
+        android:textColor="@color/subtitlecolor"
         android:textSize="16sp"
-        android:layout_below="@id/textview_lienlac"/>
+        tools:ignore="HardcodedText" />
+
     <TextView
         android:id="@+id/textview_diachi_re"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview_lienlac"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/textview_ngaysinh"
-        android:text="diachi"
-        android:textColor="#303030"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/textview_ngaysinh"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/diachi"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:lineSpacingExtra="3dp"/>
+        android:textStyle="bold" />
 
 </RelativeLayout>

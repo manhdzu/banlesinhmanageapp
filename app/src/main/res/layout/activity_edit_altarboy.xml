@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.EditAltarBoy"
     android:background="@color/bg_color"
-    android:layout_centerVertical="true"
-    android:gravity="center">
+    tools:context=".ui.EditAltarBoy">
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingVertical="10dp">
 
             <TextView
@@ -27,7 +27,7 @@
                 android:text="@string/chinh_su_le_sinh"
                 android:textColor="@color/main"
                 android:textSize="30sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/sua_tenthanh"
@@ -45,49 +45,110 @@
                 android:selectAllOnFocus="true"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/hint"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
-            <EditText
+            <LinearLayout
                 android:id="@+id/sua_hoten"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/sua_tenthanh"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/edittext_background"
-                android:hint="@string/h_t_n"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingHorizontal="18dp"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/hint"
-                android:textSize="18sp" />
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-            <EditText
-                android:id="@+id/sua_ngaysinh"
+                <EditText
+                    android:id="@+id/sua_ho"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/ho"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sua_ten"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/ten"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sua_ngaythangnamsinh"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/sua_hoten"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/edittext_background"
-                android:hint="@string/ng_y_sinh"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingHorizontal="18dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/hint"
-                android:textSize="18sp"
                 android:layout_marginBottom="5dp"
-                android:selectAllOnFocus="true"/>
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <EditText
+                    android:id="@+id/sua_ngaysinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/ng_y_sinh"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sua_thangsinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/thangsinh"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sua_namsinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/namsinh"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/sua_lienlac"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/sua_ngaysinh"
+                android:layout_below="@+id/sua_ngaythangnamsinh"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
@@ -96,10 +157,10 @@
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingHorizontal="18dp"
+                android:selectAllOnFocus="true"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/hint"
-                android:textSize="18sp"
-                android:selectAllOnFocus="true"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/sua_diachi"
@@ -113,12 +174,12 @@
                 android:hint="@string/a_ch"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:lineSpacingExtra="5dp"
                 android:paddingHorizontal="18dp"
                 android:selectAllOnFocus="true"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/hint"
-                android:textSize="18sp"
-                android:lineSpacingExtra="5dp"/>
+                android:textSize="18sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
